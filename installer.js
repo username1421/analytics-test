@@ -2,11 +2,14 @@ const params = new URLSearchParams(window.location.search);
 const widgetId = params.get('id');
 
 if (widgetId) {
-  const socket = document.getElementById('elfsight-app-socket');
+  const placeholder = document.getElementById('elfsight-app-placeholder');
 
-  if (socket) {
-    socket.classList.add('elfsight-app-' + widgetId);
-    socket.setAttribute('data-elfsight-app-lazy', '');
+  if (placeholder) {
+    const widget = document.createElement('div');
+    
+    widget.classList.add('elfsight-app-' + widgetId);
+    widget.setAttribute('data-elfsight-app-lazy', '');
+    placeholder.replaceWith(widget);
   }
 
   document.querySelectorAll('a[href]').forEach((link) => {
